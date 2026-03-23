@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pudhiya Dravida Kazhagam (PDK) | புதிய திராவிட கழகம்</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --br-green: #007e33;
+            --br-yellow: #fdd835;
+            --white: #ffffff;
+            --pdk-black: #1a1a1a;
+            --off-white: #f4f7f4;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', 'Arial', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--white); color: #333; line-height: 1.8; overflow-x: hidden; }
+
+        /* Navigation */
+        nav {
+            background: var(--white);
+            padding: 0 5%;
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        /* Fixed 3-Color Horizontal Stack */
+        .header-border-stack {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+        }
+        .line-green { height: 4px; background: var(--br-green); width: 100%; }
+        .line-white { height: 4px; background: var(--white); width: 100%; box-shadow: inset 0 0 2px rgba(0,0,0,0.1); }
+        .line-yellow { height: 4px; background: var(--br-yellow); width: 100%; }
+
+        .banner-logo { max-height: 85%; width: 80%; object-fit: contain; }
+
+        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links li { margin-left: 20px; }
+        .nav-links a { color: var(--pdk-black); text-decoration: none; font-weight: 700; font-size: 14px; text-transform: uppercase; transition: var(--transition); }
+        .nav-links a:hover { color: var(--br-green); }
+
+        .join-header-btn {
+            background: var(--br-green);
+            color: var(--white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 20px;
+        }
+
+        .menu-toggle { display: none; font-size: 28px; color: var(--br-green); cursor: pointer; }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+            background: var(--white); z-index: 2000; transition: var(--transition);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1); padding: 40px 30px;
+            display: flex; flex-direction: column; gap: 15px;
+        }
+        .mobile-menu.active { right: 0; }
+        .mobile-menu a { color: var(--pdk-black); text-decoration: none; font-size: 18px; font-weight: 700; padding: 12px 0; border-bottom: 1px solid #eee; }
+        .close-menu { align-self: flex-end; font-size: 30px; cursor: pointer; color: var(--pdk-black); }
+
+        /* Carousel with Zoom Effect */
+        #home { margin-top: 112px; height: 550px; overflow: hidden; position: relative; }
+        .carousel-track { display: flex; width: 300%; height: 100%; animation: slideShow 15s infinite; }
+        .slide { 
+            width: 33.33%; height: 100%; background-size: cover; background-position: center; 
+            position: relative; animation: zoomInOut 15s infinite ease-in-out;
+        }
+        @keyframes zoomInOut { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+        .overlay {
+            position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.45);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: var(--white); text-align: center;
+        }
+        .overlay::before {
+            content: ''; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 3px solid transparent; border-image: linear-gradient(to bottom, var(--br-green), var(--white), var(--br-yellow)) 1;
+            opacity: 0; transition: var(--transition); transform: scale(0.95);
+        }
+        #home:hover .overlay::before { opacity: 1; transform: scale(1); }
+        .overlay h1 { font-size: 3.5rem; font-weight: 900; text-shadow: 2px 2px 15px rgba(0,0,0,0.7); }
+
+        @keyframes slideShow { 0%, 25% { transform: translateX(0); } 33%, 58% { transform: translateX(-33.33%); } 66%, 91% { transform: translateX(-66.66%); } 100% { transform: translateX(0); } }
+
+        /* Sections */
+        section { padding: 80px 10%; }
+        .section-title { text-align: center; margin-bottom: 60px; font-size: 32px; color: var(--br-green); position: relative; }
+        .section-title::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: var(--br-yellow); }
+
+        /* About & Read More */
+        .about-grid { display: flex; flex-direction: column; gap: 60px; }
+        .row { display: flex; align-items: flex-start; gap: 50px; }
+        .row.reverse { flex-direction: row-reverse; }
+        .row-text { flex: 1.2; }
+        .row-text h3 { color: var(--br-green); font-size: 26px; margin-bottom: 15px; }
+        .more-content { max-height: 0; overflow: hidden; transition: max-height 0.6s ease; opacity: 0; }
+        .more-content.show { max-height: 500px; opacity: 1; margin-top: 10px; }
+        .read-more-btn { background: none; border: 1.5px solid var(--br-green); color: var(--br-green); padding: 8px 18px; margin-top: 15px; cursor: pointer; font-weight: 600; border-radius: 4px; transition: var(--transition); }
+        .read-more-btn:hover { background: var(--br-green); color: var(--white); }
+        .row-img { flex: 1; height: 350px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .row-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Organization */
+        #organization { background-color: var(--off-white); }
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .member-card {
+            background: #fff; padding: 30px 20px; border-radius: 15px; text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: var(--transition); border-top: 5px solid var(--br-green);
+        }
+        .member-card:hover { transform: translateY(-10px); border-top-color: var(--br-yellow); }
+        .member-img { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 20px; border: 4px solid var(--off-white); object-fit: cover; transition: var(--transition); }
+        .member-card:hover .member-img { border-color: var(--br-green); transform: rotate(5deg); }
+
+        /* Footer */
+        footer { background: var(--pdk-black); color: var(--white); padding: 60px 10% 30px; text-align: center; border-top: 4px solid var(--br-green); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
+
+        /* Join Modal */
+        #joinModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:3000; justify-content:center; align-items:center; }
+        .modal-box { background:var(--white); padding:40px; border-radius:15px; width:90%; max-width:400px; position:relative; border-top:8px solid var(--br-green); }
+        .modal-box input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 16px; }
+
+        @media (max-width: 992px) {
+            .nav-links { display: none; }
+            .menu-toggle { display: block; }
+            nav { height: 80px; }
+            .header-border-stack { top: 80px; }
+            #home { margin-top: 92px; height: 400px; }
+            .overlay h1 { font-size: 2.2rem; }
+            .row, .row.reverse { flex-direction: column !important; text-align: center; }
+            .row-img { width: 100%; height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="./indeximage/LetterHead.jpeg" alt="PDK Banner" class="banner-logo">
+        <ul class="nav-links">
+            <li><a href="#home">முகப்பு</a></li>
+            <li><a href="#about">பற்றி</a></li>
+            <li><a href="#organization">நிர்வாகிகள்</a></li>
+            <li><a href="#contact">தொடர்பு</a></li>
+            <li><button class="join-header-btn" onclick="openJoinModal()">இணையுங்கள்</button></li>
+        </ul>
+        <div class="menu-toggle" onclick="toggleMobileMenu()"><i class="fas fa-bars"></i></div>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="close-menu" onclick="toggleMobileMenu()">&times;</div>
+        <a href="#home" onclick="toggleMobileMenu()">முகப்பு</a>
+        <a href="#about" onclick="toggleMobileMenu()">பற்றி</a>
+        <a href="#organization" onclick="toggleMobileMenu()">நிர்வாகிகள்</a>
+        <a href="#contact" onclick="toggleMobileMenu()">தொடர்பு</a>
+        <button class="join-header-btn" onclick="openJoinModal(); toggleMobileMenu();" style="margin: 20px 0 0 0; width: 100%;">இணையுங்கள்</button>
+    </div>
+
+    <div class="header-border-stack">
+        <div class="line-green"></div>
+        <div class="line-white"></div>
+        <div class="line-yellow"></div>
+    </div>
+
+    <div id="home">
+        <div class="carousel-track">
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1590424753051-24f79628045a?q=80&w=1200')"><div class="overlay"><h1>புதிய திராவிட கழகம்</h1></div></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=1200')"><div class="overlay"><h1>சமத்துவ அரசியல்</h1></div></div>
+            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200')"><div class="overlay"><h1>மக்கள் சேவை</h1></div></div>
+        </div>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title">கட்சியின் வரலாறு</h2>
+        <div class="about-grid">
+            <div class="row">
+                <div class="row-text">
+                    <h3>PDK அறிமுகம்</h3>
+                    <p>2017 ஆம் ஆண்டு தொடங்கப்பட்ட PDK, கொங்கு மண்டலத்தின் உரிமைகளுக்காகவும் சமூக நீதிக்காகவும் தொடர்ந்து குரல் கொடுத்து வருகிறது.</p>
+                    <div id="more1" class="more-content">
+                        <p>எமது இயக்கத்தின் முக்கிய நோக்கம் பின்தங்கிய மக்களின் வாழ்வாதாரத்தை உயர்த்துவது மற்றும் அனைவருக்கும் சமமான கல்வி வாய்ப்புகளை உறுதி செய்வது ஆகும்.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleReadMore('more1', this)">Read More</button>
+                </div>
+                <div class="row-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=600" alt="History"></div>
+            </div>
+            <div class="row reverse">
+                <div class="row-text">
+                    <h3>தலைவர் K.S. ராஜ் குமார்</h3>
+                    <p>இளம் வயது முதலே சமூகப் பணியில் ஈடுபட்டு வரும் தலைவர் K.S. ராஜ் குமார், வேட்டுவ கவுண்டர் இளைஞர் நலச் சங்கத்தின் வழியாக ஆயிரக்கணக்கானோருக்கு உதவி வருகிறார்.</p>
+                    <div id="more2" class="more-content">
+                        <p>கல்வி மற்றும் வேலைவாய்ப்பே இவரது பிரதான நோக்கம். இளைஞர்களுக்கு அரசியல் விழிப்புணர்வு வழங்குவதில் இவர் முன்னின்று செயல்படுகிறார்.</p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleReadMore('more2', this)">Read More</button>
+                </div>
+                <div class="row-img"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600" alt="Leader"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="organization">
+        <h2 class="section-title">முக்கிய நிர்வாகிகள்</h2>
+        <div class="member-grid">
+            <div class="member-card">
+                <img src="https://via.placeholder.com/150" alt="Leader" class="member-img">
+                <h4>S. ராஜ் குமார்</h4>
+                <p>நிறுவனத் தலைவர்</p>
+            </div>
+            <div class="member-card">
+                <img src="https://via.placeholder.com/150" alt="Member" class="member-img">
+                <h4>நிர்வாகி பெயர் 1</h4>
+                <p>மாநிலச் செயலாளர்</p>
+            </div>
+            <div class="member-card">
+                <img src="https://via.placeholder.com/150" alt="Member" class="member-img">
+                <h4>நிர்வாகி பெயர் 2</h4>
+                <p>மாவட்டத் தலைவர்</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div><h4>தலைமையகம்</h4><p>46, கருத்திபாளையம், ஈரோடு.</p></div>
+            <div><h4>தொடர்புக்கு</h4><p>ksrajgounder@gmail.com<br>+91 88833 11193</p></div>
+            <div><h4>சமூக ஊடகங்கள்</h4><p><i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-youtube fa-2x"></i></p></div>
+        </div>
+        <p style="margin-top:40px; opacity:0.6; font-size:12px">&copy; 2026 PDK Party. All Rights Reserved.</p>
+    </footer>
+
+    <div id="joinModal">
+        <div class="modal-box">
+            <button onclick="closeJoinModal()" style="position:absolute; top:15px; right:15px; border:none; background:none; font-size:28px; cursor:pointer;">&times;</button>
+            <h2 style="color:var(--br-green); text-align:center; margin-bottom:20px;">உறுப்பினர் சேர்க்கை</h2>
+            <form id="pdkJoinForm">
+                <input type="text" name="Name" placeholder="உங்கள் பெயர் (Full Name)" required>
+                <input type="tel" name="Phone" placeholder="தொலைபேசி எண் (Mobile)" required>
+                <input type="text" name="Area" placeholder="மாவட்டம் / பகுதி (Area)" required>
+                <button type="submit" id="submitBtn" style="width:100%; background:var(--br-green); color:var(--white); border:none; padding:15px; border-radius:5px; font-weight:bold; cursor:pointer;">இணைந்திருங்கள் (Join Now)</button>
+            </form>
+            <p id="msg" style="text-align:center; margin-top:15px; color:var(--br-green); font-weight:bold;"></p>
+        </div>
+    </div>
+
+    <script>
+        // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT URL
+        const scriptURL = 'PASTE_YOUR_APPS_SCRIPT_URL_HERE';
+
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function openJoinModal() { document.getElementById('joinModal').style.display = 'flex'; }
+        function closeJoinModal() { document.getElementById('joinModal').style.display = 'none'; }
+
+        function toggleReadMore(id, btn) {
+            const content = document.getElementById(id);
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                btn.innerText = "Read More";
+            } else {
+                content.classList.add('show');
+                btn.innerText = "Read Less";
+            }
+        }
+
+        const form = document.getElementById('pdkJoinForm');
+        const msg = document.getElementById('msg');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerText = "Updating...";
+            
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    msg.innerHTML = "நன்றி! உங்கள் விவரங்கள் பெறப்பட்டது.";
+                    setTimeout(() => { 
+                        closeJoinModal(); 
+                        form.reset(); 
+                        msg.innerHTML = "";
+                        btn.disabled = false;
+                        btn.innerText = "Join Now";
+                    }, 3000);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    btn.disabled = false;
+                    btn.innerText = "Join Now";
+                });
+        });
+    </script>
+</body>
+</html>
