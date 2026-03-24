@@ -2,9 +2,21 @@
 <html lang="ta">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official website of Puthiya Dravida Kazhagam (PDK) - புதிய திராவிட கழகம். Dedicated to the progress and welfare of the people. Join PDK for a better future.">
     <title>Pudhiya Dravida Kazhagam (PDK) | புதிய திராவிட கழகம்</title>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Puthiya Dravida Kazhagam",
+  "alternateName": ["PDK", "Pudhiya Dravida Kazhagam", "puthiyadravidakazhagam"],
+  "url": "https://puthiyadravidakazhagam.in"
+}
+</script>
+
+    <link rel="icon" href="./indeximage/favicon.jpeg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root {
             --br-green: #007e33;
@@ -81,7 +93,7 @@
         #home { margin-top: 112px; height: 550px; overflow: hidden; position: relative; }
         .carousel-track { display: flex; width: 300%; height: 100%; animation: slideShow 15s infinite; }
         .slide { 
-            width: 33.33%; height: 100%; background-size: cover; background-position: center; 
+            width: 33.33%; height: 100%; background-size: contain; background-position: center; 
             position: relative; animation: zoomInOut 15s infinite ease-in-out;
         }
         @keyframes zoomInOut { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
@@ -117,7 +129,7 @@
         .read-more-btn { background: none; border: 1.5px solid var(--br-green); color: var(--br-green); padding: 8px 18px; margin-top: 15px; cursor: pointer; font-weight: 600; border-radius: 4px; transition: var(--transition); }
         .read-more-btn:hover { background: var(--br-green); color: var(--white); }
         .row-img { flex: 1; height: 350px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .row-img img { width: 100%; height: 100%; object-fit: cover; }
+        .row-img img { width: 100%; height: 100%; object-fit: contain; }
 
         /* Organization */
         #organization { background-color: var(--off-white); }
@@ -149,7 +161,11 @@
             .row, .row.reverse { flex-direction: column !important; text-align: center; }
             .row-img { width: 100%; height: 250px; }
         }
+
     </style>
+
+</script>
+
 </head>
 <body>
 
@@ -182,9 +198,12 @@
 
     <div id="home">
         <div class="carousel-track">
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1590424753051-24f79628045a?q=80&w=1200')"><div class="overlay"><h1>புதிய திராவிட கழகம்</h1></div></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=1200')"><div class="overlay"><h1>சமத்துவ அரசியல்</h1></div></div>
-            <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200')"><div class="overlay"><h1>மக்கள் சேவை</h1></div></div>
+            <div class="slide" style="background-image: url('./curoselimage/1.jpeg')"></div>
+            <div class="slide" style="background-image: url('./curoselimage/2.jpeg')"></div>
+            <div class="slide" style="background-image: url('./curoselimage/3.jpeg')"></div>
+            <div class="slide" style="background-image: url('./curoselimage/4.jpeg')"></div>
+            <div class="slide" style="background-image: url('./curoselimage/5.jpeg')"></div>
+            <div class="slide" style="background-image: url('./curoselimage/6.jpeg')"></div>
         </div>
     </div>
 
@@ -194,13 +213,13 @@
             <div class="row">
                 <div class="row-text">
                     <h3>PDK அறிமுகம்</h3>
-                    <p>2017 ஆம் ஆண்டு தொடங்கப்பட்ட PDK, கொங்கு மண்டலத்தின் உரிமைகளுக்காகவும் சமூக நீதிக்காகவும் தொடர்ந்து குரல் கொடுத்து வருகிறது.</p>
+                    <p>2018 ஆம் ஆண்டு தொடங்கப்பட்ட PDK, கொங்கு மண்டலத்தின் உரிமைகளுக்காகவும் சமூக நீதிக்காகவும் தொடர்ந்து குரல் கொடுத்து வருகிறது.</p>
                     <div id="more1" class="more-content">
                         <p>எமது இயக்கத்தின் முக்கிய நோக்கம் பின்தங்கிய மக்களின் வாழ்வாதாரத்தை உயர்த்துவது மற்றும் அனைவருக்கும் சமமான கல்வி வாய்ப்புகளை உறுதி செய்வது ஆகும்.</p>
                     </div>
                     <button class="read-more-btn" onclick="toggleReadMore('more1', this)">Read More</button>
                 </div>
-                <div class="row-img"><img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=600" alt="History"></div>
+                <div class="row-img"><img src="./indeximage/Thalivarphoto.jpeg" alt="History"></div>
             </div>
             <div class="row reverse">
                 <div class="row-text">
@@ -211,7 +230,7 @@
                     </div>
                     <button class="read-more-btn" onclick="toggleReadMore('more2', this)">Read More</button>
                 </div>
-                <div class="row-img"><img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=600" alt="Leader"></div>
+                <div class="row-img"><img src="./curoselimage/1.jpeg" alt="Leader"></div>
             </div>
         </div>
     </section>
@@ -220,7 +239,7 @@
         <h2 class="section-title">முக்கிய நிர்வாகிகள்</h2>
         <div class="member-grid">
             <div class="member-card">
-                <img src="https://via.placeholder.com/150" alt="Leader" class="member-img">
+                <img src="./indeximage/Thalivarphoto.jpeg" alt="Leader" class="member-img">
                 <h4>S. ராஜ் குமார்</h4>
                 <p>நிறுவனத் தலைவர்</p>
             </div>
@@ -240,7 +259,7 @@
     <footer id="contact">
         <div class="footer-grid">
             <div><h4>தலைமையகம்</h4><p>46, கருத்திபாளையம், ஈரோடு.</p></div>
-            <div><h4>தொடர்புக்கு</h4><p>ksrajgounder@gmail.com<br>+91 88833 11193</p></div>
+            <div><h4>தொடர்புக்கு</h4><p>contact@puthiyadravidakazhagam.in  <br>+91 6381659939</p></div>
             <div><h4>சமூக ஊடகங்கள்</h4><p><i class="fab fa-facebook fa-2x"></i> &nbsp; <i class="fab fa-youtube fa-2x"></i></p></div>
         </div>
         <p style="margin-top:40px; opacity:0.6; font-size:12px">&copy; 2026 PDK Party. All Rights Reserved.</p>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDK Party Website Launch Poster</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --pdk-green: #007e33;
+            --pdk-yellow: #fdd835;
+            --pdk-black: #1a1a1a;
+            --white: #ffffff;
+            --off-white: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #e0e0e0;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+
+        /* Poster Container */
+        .poster {
+            width: 90%;
+            max-width: 800px;
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 10px solid var(--pdk-green);
+            position: relative;
+        }
+
+        /* Top Header - White */
+        .poster-header {
+            background-color: var(--white);
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid var(--pdk-yellow);
+        }
+        .poster-logo {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .header-title {
+            font-size: 28px;
+            color: var(--pdk-green);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content - Black */
+        .poster-body {
+            background-color: var(--pdk-black);
+            color: var(--white);
+            padding: 50px 40px;
+            text-align: center;
+        }
+        .main-tagline {
+            font-size: 40px;
+            color: var(--white);
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+        .tagline-tamil {
+            font-size: 32px;
+            color: var(--white);
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        
+        /* Website URL Box */
+        .url-box {
+            background-color: var(--off-white);
+            color: var(--pdk-green);
+            padding: 20px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 24px;
+            font-weight: 900;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border: 2px solid var(--pdk-green);
+        }
+        .url-box i {
+            color: var(--pdk-green);
+            margin-right: 10px;
+        }
+
+        /* Footer - Green */
+        .poster-footer {
+            background-color: var(--pdk-green);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .footer-tamil {
+            font-size: 26px;
+            font-weight: 800;
+        }
+        .social-icons a {
+            color: var(--white);
+            font-size: 30px;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--pdk-yellow);
+            transform: scale(1.1);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            .poster {
+                border-width: 6px;
+            }
+            .header-title {
+                font-size: 22px;
+            }
+            .main-tagline {
+                font-size: 30px;
+            }
+            .tagline-tamil {
+                font-size: 24px;
+            }
+            .url-box {
+                font-size: 18px;
+                padding: 15px 20px;
+            }
+            .poster-footer {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .footer-tamil {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster">
+        <div class="poster-header">
+            <img src="https://i.ibb.co/3s6H0jV/pdk-banner.png" alt="PDK Banner" class="poster-logo">
+            <div class="header-title">Pudhiya Dravida Kazhagam</div>
+        </div>
+
+        <div class="poster-body">
+            <div class="main-tagline">
+                A NEW DAWN FOR CHANGE!
+                <span class="tagline-tamil">மாற்றத்திற்கான ஒரு புதிய விடியல்!</span>
+            </div>
+            <p style="font-size: 18px; opacity: 0.8; margin-bottom: 30px;">
+                எமது கட்சியைப் பற்றிய முழுமையான விபரங்களை அறியவும், <br>
+                புதிய உறுப்பினராக இணைந்து கொள்ளவும், எமது புதிய இணையதளத்தைப் பாருங்கள்!
+            </p>
+            <div class="url-box">
+                <i class="fas fa-globe"></i> puthiyadravidakazhagam.in
+            </div>
+        </div>
+
+        <div class="poster-footer">
+            <div class="footer-tamil">இணைந்திடுவோம், வென்றிடுவோம்!</div>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
